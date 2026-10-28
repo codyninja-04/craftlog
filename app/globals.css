@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-bg text-ink antialiased;
+    /* A faint dot grid, like a cutting mat or the page of a shop notebook. */
+    background-image: radial-gradient(rgba(120, 113, 108, 0.16) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  ::selection {
+    @apply bg-primary-soft;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/60 ring-offset-2 ring-offset-bg;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-surface shadow-card;
+  }
+  .label {
+    @apply font-mono text-[0.68rem] font-medium uppercase tracking-[0.12em] text-faint;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .hint {
+    @apply mt-1.5 text-xs leading-relaxed text-faint;
+  }
+  .heading {
+    @apply font-display font-semibold tracking-tight text-ink;
+  }
+  .figure {
+    @apply font-mono tabular-nums;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-white shadow-sm hover:bg-primary-dark active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-surface text-ink hover:border-strong hover:bg-sunk;
+  }
+  .btn-quiet {
+    @apply btn text-muted hover:bg-sunk hover:text-ink;
+  }
+  .btn-danger {
+    @apply btn border border-danger/30 bg-danger-soft text-danger hover:bg-danger hover:text-white;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-faint/80 focus:border-primary-bright focus:outline-none focus:ring-4 focus:ring-primary/10;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1 text-xs font-medium text-muted;
+  }
+  .skeleton {
+    @apply rounded-md bg-gradient-to-r from-sunk via-line to-sunk bg-[length:200%_100%] animate-shimmer;
+  }
+  /* Tick marks along an edge, like the scale on a steel rule. */
+  .ruler {
+    background-image: repeating-linear-gradient(90deg, rgba(120, 113, 108, 0.45) 0 1px, transparent 1px 8px),
+      repeating-linear-gradient(90deg, rgba(120, 113, 108, 0.6) 0 1px, transparent 1px 40px);
+    background-size: 100% 5px, 100% 9px;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
